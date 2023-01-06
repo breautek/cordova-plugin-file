@@ -67,8 +67,9 @@ Note that while this documentation uses TypeScript syle notation, these types ma
 - - [4.1.0 FileSystem Properties](#410-filesystem-properties)
 - - - [4.1.1 name](#411-name)
 - - - [4.1.2 root](#412-root)
-- [5.0.0 DirectoryEntry](#500-directoryentry)
-- - [5.1.0 DirectoryEntry Properties](#510-directoryentry-properties)
+- [5.0.0 Entry](#500-entry)
+- [6.0.0 DirectoryEntry](#600-directoryentry)
+- - [6.1.0 DirectoryEntry Properties](#610-directoryentry-properties)
 - - - [5.1.1 filesystem](#511-filesystem)
 - - - [5.1.2 fullPath](#512-fullpath)
 - - - [5.1.3 isDirectory](#513-isdirectory)
@@ -584,7 +585,10 @@ Gets the root [directory](#500-directoryentry) of the filesystem.
 FileSystem.name: DirectoryEntry
 ```
 
-## 5.0.0 DirectoryEntry
+## 5.0.0 Entry
+
+
+## 6.0.0 DirectoryEntry
 
 An object that represents a directory on the filesystem.
 
@@ -600,11 +604,11 @@ An object that represents a directory on the filesystem.
 DirectoryEntry: Object
 ```
 
-### 5.1.0 DirectoryEntry Properties
+### 6.1.0 DirectoryEntry Properties
 
 This section describes the properties of a [DirectoryEntry](#500-directoryentry) instance.
 
-#### 5.1.1 filesystem
+#### 6.1.1 filesystem
 
 The [FileSystem](#400-filesystem) that this directory belongs to.
 
@@ -614,7 +618,7 @@ The [FileSystem](#400-filesystem) that this directory belongs to.
 DirectoryEntry.filesystem: FileSystem
 ```
 
-#### 5.1.2 fullPath
+#### 6.1.2 fullPath
 
 The full native path to the directory, relative to the filesystem [root](#412-root).
 
@@ -624,7 +628,7 @@ The full native path to the directory, relative to the filesystem [root](#412-ro
 DirectoryEntry.fullPath: string
 ```
 
-#### 5.1.3 isDirectory
+#### 6.1.3 isDirectory
 
 A boolean that wil return true if this `Entry` is a directory.
 
@@ -634,7 +638,7 @@ A boolean that wil return true if this `Entry` is a directory.
 DirectoryEntry.isDirectory: boolean
 ```
 
-#### 5.1.4 isFile
+#### 6.1.4 isFile
 
 A boolean that wil return true if this `Entry` is a file.
 
@@ -644,7 +648,7 @@ A boolean that wil return true if this `Entry` is a file.
 DirectoryEntry.isFile: boolean
 ```
 
-#### 5.1.5 name
+#### 6.1.5 name
 
 The name of the directory. Root directories will have an empty name.
 
@@ -654,7 +658,7 @@ The name of the directory. Root directories will have an empty name.
 DirectoryEntry.name: string
 ```
 
-#### 5.1.6 nativeURL
+#### 6.1.6 nativeURL
 
 A `file:` schemed url containing the local native path to the `Entry` object.
 
@@ -664,11 +668,11 @@ A `file:` schemed url containing the local native path to the `Entry` object.
 DirectoryEntry.nativeURL: string
 ```
 
-### 5.2.0 DirectoryEntry Methods
+### 6.2.0 DirectoryEntry Methods
 
 This section describes the available methods on a [DirectoryEntry](#500-directoryentry) instance.
 
-#### 5.2.1 createReader
+#### 6.2.1 createReader
 
 Creates a [DirectoryReader](#530-directoryreader), for reading the directories and files that are in this directory.
 
@@ -678,7 +682,7 @@ Creates a [DirectoryReader](#530-directoryreader), for reading the directories a
 DirectoryEntry.createReader(): DirectoryReader
 ```
 
-#### 5.2.2 getDirectory
+#### 6.2.2 getDirectory
 
 Gets (and potentially creates) a [DirectoryEntry](#500-directoryentry) that is contained inside of this directory.
 
@@ -700,7 +704,7 @@ DirectoryEntry.getDirectory(
 ): void;
 ```
 
-#### 5.2.3 getFile
+#### 6.2.3 getFile
 
 Gets (and potentially creates) a [FileEntry](#600-fileentry) that is contained inside of this directory.
 
@@ -718,7 +722,7 @@ DirectoryEntry.getFile(
 ): void;
 ```
 
-#### 5.2.4 removeRecursively
+#### 6.2.4 removeRecursively
 
 Removes this directory and all contained directories and files of this directory.
 
@@ -731,7 +735,7 @@ DirectoryEntry.removeRecursively(
 ): void;
 ```
 
-### 5.3.0 DirectoryReader
+### 6.3.0 DirectoryReader
 
 This section describes the API of the `DirectoryReader`. Obtained by calling [createReader](#521-createreader) on a [DirectoryEntry](#500-directoryentry) instance.
 
@@ -740,7 +744,7 @@ This section describes the API of the `DirectoryReader`. Obtained by calling [cr
 <img src="./static/img/android.svg" height="22" width="22">
 <img src="./static/img/ios.svg" height="22" width="22">
 
-#### 5.3.1 hasReadEntries
+#### 6.3.1 hasReadEntries
 
 This is an instance boolean property that will be `true` if this instance of [DirectoryReader](#530-directoryreader) has read the directory.
 
@@ -750,7 +754,7 @@ This is an instance boolean property that will be `true` if this instance of [Di
 DirectoryReader.hasReadEntries: boolean
 ```
 
-#### 5.3.2 localURL
+#### 6.3.2 localURL
 
 This is an instance string property that is a DOM-usable URL.
 
@@ -760,7 +764,7 @@ This is an instance string property that is a DOM-usable URL.
 DirectoryReader.localURL: string
 ```
 
-#### 5.3.3 readEntries
+#### 6.3.3 readEntries
 
 This is an instance method to read the listing of this directory. The result array will be of either [DirectoryEntry](#500-directoryentry) or [FileEntry](#600-fileentry) instances.
 
@@ -773,15 +777,15 @@ DirectoryReader.readEntries(
 ): void;
 ```
 
-## 6.0.0 FileEntry
+## 7.0.0 FileEntry
 
 This section describes the properties and methods of a `FileEntry` instance.
 
-### 6.1.0 FileEntry Properties
+### 7.1.0 FileEntry Properties
 
 This section describes the properties of a `FileEntry` instance.
 
-#### 6.1.1 filesystem
+#### 7.1.1 filesystem
 
 The [FileSystem](#400-filesystem) that this file belongs to.
 
@@ -791,7 +795,7 @@ The [FileSystem](#400-filesystem) that this file belongs to.
 FileEntry.filesystem: FileSystem
 ```
 
-#### 6.1.2 fullPath
+#### 7.1.2 fullPath
 
 The full native path to the file, relative to the filesystem [root](#412-root).
 
@@ -801,7 +805,7 @@ The full native path to the file, relative to the filesystem [root](#412-root).
 FileEntry.fullPath: string
 ```
 
-#### 6.1.3 isDirectory
+#### 7.1.3 isDirectory
 
 A boolean that wil return true if this `Entry` is a directory.
 
@@ -811,7 +815,7 @@ A boolean that wil return true if this `Entry` is a directory.
 FileEntry.isDirectory: boolean
 ```
 
-#### 6.1.4 isFile
+#### 7.1.4 isFile
 
 A boolean that wil return true if this `Entry` is a file.
 
@@ -821,7 +825,7 @@ A boolean that wil return true if this `Entry` is a file.
 FileEntry.isFile: boolean
 ```
 
-#### 6.1.5 name
+#### 7.1.5 name
 
 The name of the file, including the extension if any.
 
@@ -831,7 +835,7 @@ The name of the file, including the extension if any.
 FileEntry.name: string
 ```
 
-#### 6.1.6 nativeURL
+#### 7.1.6 nativeURL
 
 A `file:` schemed url containing the local native path to the `Entry` object.
 
@@ -841,11 +845,11 @@ A `file:` schemed url containing the local native path to the `Entry` object.
 FileEntry.nativeURL: string
 ```
 
-### 6.2.0 FileEntry Methods
+### 7.2.0 FileEntry Methods
 
 This section describes the available methods on a [FileEntry](#600-fileentry) instance.
 
-#### 6.2.1 createWriter
+#### 7.2.1 createWriter
 
 Creates a [FileWriter](#630-filewriter) instance to write to the file.
 
@@ -858,7 +862,7 @@ FileEntry.createWriter(
 ): void
 ```
 
-#### 6.2.2 file
+#### 7.2.2 file
 
 Gets a [File](#640-file) instance.
 
@@ -871,11 +875,11 @@ FileEntry.file(
 ): void
 ```
 
-### 6.3.0 FileWriter
+### 7.3.0 FileWriter
 
 This section describes the properties and instance methods of a `FileWriter` object. Obtainable by calling [FileEntry.createWriter](#621-createwriter)
 
-#### 6.3.1 localURL
+#### 7.3.1 localURL
 
 An instance string property containing a DOM-usable URL.
 
@@ -885,7 +889,7 @@ An instance string property containing a DOM-usable URL.
 FileWriter.localURL: string;
 ```
 
-#### 6.3.2 length
+#### 7.3.2 length
 
 An instance number property containing the size of the file in bytes.
 
@@ -895,7 +899,7 @@ An instance number property containing the size of the file in bytes.
 FileWriter.length: number;
 ```
 
-#### 6.3.3 position
+#### 7.3.3 position
 
 The current byte position of the write cursor.
 
@@ -903,7 +907,7 @@ The current byte position of the write cursor.
 FileWriter.position: number;
 ```
 
-#### 6.3.4 onabort
+#### 7.3.4 onabort
 
 The abort callback that will be invoked if the writer has been aborted. By default, this is `null`.
 
@@ -913,7 +917,7 @@ The abort callback that will be invoked if the writer has been aborted. By defau
 FileWriter.onabort = null | () => void;
 ```
 
-#### 6.3.5 onerror
+#### 7.3.5 onerror
 
 The error callback that will be invoked if the writer has errored. By default, this is `null`.
 
@@ -923,7 +927,7 @@ The error callback that will be invoked if the writer has errored. By default, t
 FileWriter.onerror = null | (error: FileError) => void;
 ```
 
-#### 6.3.6 onprogress
+#### 7.3.6 onprogress
 
 The progress callback that will be invoked after every write chunk. By default, this is `null`.
 
@@ -935,7 +939,7 @@ _TODO: Find and document the actual callback parameters_
 FileWriter.onprogress = null | () => void;
 ```
 
-#### 6.3.7 onwritestart
+#### 7.3.7 onwritestart
 
 A callback that gets invoked on the initial write of every [write]() call.
 
@@ -945,7 +949,7 @@ A callback that gets invoked on the initial write of every [write]() call.
 FileWriter.onwritestart = null | (event: ProgressEvent) => void;
 ```
 
-#### 6.3.8 onwrite
+#### 7.3.8 onwrite
 
 A callback that gets invoked on every write chunk.
 
@@ -955,7 +959,7 @@ A callback that gets invoked on every write chunk.
 FileWriter.onwrite = null | (event: ProgressEvent) => void;
 ```
 
-#### 6.3.9 onwriteend
+#### 7.3.9 onwriteend
 
 A callback that gets invoked after the last write chunk has been written.
 
@@ -965,7 +969,7 @@ A callback that gets invoked after the last write chunk has been written.
 FileWriter.onwriteend = null | (event: ProgressEvent) => void;
 ```
 
-#### 6.3.10 readyState
+#### 7.3.10 readyState
 
 An instance property that defines the current [ReadyState](#640-writer-ready-state). This value will be updated during the [write](#6313-write) lifecycle.
 
@@ -975,7 +979,7 @@ An instance property that defines the current [ReadyState](#640-writer-ready-sta
 FileWriter.readyState: FileWriterReadyState
 ```
 
-#### 6.3.11 error
+#### 7.3.11 error
 
 An instance property that defines that the writer has encountered an error. If the property is `null`, then no error has occurred.
 
@@ -985,7 +989,7 @@ An instance property that defines that the writer has encountered an error. If t
 FileWriter.error: null | FileError;
 ```
 
-#### 6.3.12 abort
+#### 7.3.12 abort
 
 An instance method that aborts a write. Will raise an [INVALID_STATE_ERR](#207-invalidstateerr) if the writer is not writing. Otherwise it will set the writer to an [ABORT_ERR](#203-aborterr) state.
 
@@ -995,7 +999,7 @@ An instance method that aborts a write. Will raise an [INVALID_STATE_ERR](#207-i
 FileWriter.abort(): void;
 ```
 
-#### 6.3.13 write
+#### 7.3.13 write
 
 An instance method that begins a write to a file. It is unsafe to call this method multiple times without waiting for the [onwriteend](#639-onwriteend) event.
 
@@ -1005,7 +1009,7 @@ An instance method that begins a write to a file. It is unsafe to call this meth
 FileWriter.write(data: string | Blob | File | ArrayBuffer): void;
 ```
 
-#### 6.3.14 seek
+#### 7.3.14 seek
 
 An instance method that seeks the position cursor to a given byte offset.
 
@@ -1021,7 +1025,7 @@ Calling `seek` while there is an active write will raise a [INVALID_STATE_ERR](#
 FileWriter.seek(offset: number): void;
 ```
 
-#### 6.3.15 truncate
+#### 7.3.15 truncate
 
 An instance method to truncate the file to the specified size.
 
@@ -1033,11 +1037,11 @@ Calling this while there is an active write will result in an [INVALID_STATE_ERR
 FileWriter.truncate(size: number): void;
 ```
 
-### 6.4.0 Writer Ready State
+### 7.4.0 Writer Ready State
 
 This section describes the [FileWriter](#630-filewriter) ready states.
 
-#### 6.4.1 INIT
+#### 7.4.1 INIT
 
 A ready state that declares that this writer is still initializing.
 
@@ -1047,7 +1051,7 @@ A ready state that declares that this writer is still initializing.
 FileWriter.INIT: number = 0
 ```
 
-#### 6.4.2 WRITING
+#### 7.4.2 WRITING
 
 A ready state that declares that this writer is currently writing.
 
@@ -1057,7 +1061,7 @@ A ready state that declares that this writer is currently writing.
 FileWriter.WRITING: number = 1
 ```
 
-#### 6.4.3 DONE
+#### 7.4.3 DONE
 
 A ready state that declares that this writer has finished writing.
 
@@ -1067,13 +1071,13 @@ A ready state that declares that this writer has finished writing.
 FileWriter.DONE: number = 2
 ```
 
-### 6.5.0 Progress Event
+### 7.5.0 Progress Event
 
 An event object that encapsulates file IO progressions.
 
 Note: This object while implements a similar API, is not the browser's [ProgressEvent](https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent) API.
 
-#### 6.5.1 type
+#### 7.5.1 type
 
 An event property that signals the different progression types, which includes:
 
@@ -1093,7 +1097,7 @@ An event property that signals the different progression types, which includes:
 ProgressEvent.type: string
 ```
 
-#### 6.5.2 target
+#### 7.5.2 target
 
 The object that is firing the progress event. Generally this is a [FileWriter](#630-filewriter) or a [FileReader]().
 
@@ -1103,7 +1107,7 @@ The object that is firing the progress event. Generally this is a [FileWriter](#
 ProgressEvent.target: FileWriter | FileReader;
 ```
 
-#### 6.5.3 loaded
+#### 7.5.3 loaded
 
 The number of bytes that have been read so far.
 
@@ -1113,7 +1117,7 @@ The number of bytes that have been read so far.
 ProgressEvent.loaded: number;
 ```
 
-#### 6.5.4 total
+#### 7.5.4 total
 
 The total number of bytes of the file that is being read.
 
@@ -1123,13 +1127,13 @@ The total number of bytes of the file that is being read.
 ProgressEvent.total: number;
 ```
 
-### 6.6.0 File
+### 7.6.0 File
 
 This section describes the properties and instance methods of a `File` object. Obtainable by calling [FileEntry.file](#622-file).
 
 Note: While this `File` implements a similar API to the browser's [File](https://developer.mozilla.org/en-US/docs/Web/API/File) API, it is not the same kind of object and is not necessary interchangable.
 
-#### 6.6.1 name
+#### 7.6.1 name
 
 An instance string property that holds the name of the file.
 
@@ -1139,7 +1143,7 @@ An instance string property that holds the name of the file.
 File.name: string
 ```
 
-#### 6.6.2 localURL
+#### 7.6.2 localURL
 
 An instance string property that holds a DOM-usable url.
 
@@ -1149,7 +1153,7 @@ An instance string property that holds a DOM-usable url.
 File.localURL: string
 ```
 
-#### 6.6.3 type
+#### 7.6.3 type
 
 An instance string property that holds the MIME type if known. Will be `null` otherwise.
 
@@ -1159,7 +1163,7 @@ An instance string property that holds the MIME type if known. Will be `null` ot
 File.type: string | null
 ```
 
-#### 6.6.4 lastModified
+#### 7.6.4 lastModified
 
 An instance `Date` property that holds the last modified datetime, if known. Will be `null` otherwise.
 
@@ -1169,7 +1173,7 @@ An instance `Date` property that holds the last modified datetime, if known. Wil
 File.lastModified: Date | null
 ```
 
-#### 6.6.5 size
+#### 7.6.5 size
 
 An instance number property that holds the size of the file in bytes.
 
@@ -1179,7 +1183,7 @@ An instance number property that holds the size of the file in bytes.
 File.size: number
 ```
 
-#### 6.6.6 start
+#### 7.6.6 start
 
 An instance number property that represents the starting byte position of this file slice.
 
@@ -1189,7 +1193,7 @@ An instance number property that represents the starting byte position of this f
 File.start: number
 ```
 
-#### 6.6.7 end
+#### 7.6.7 end
 
 An instance number property that represents the ending byte position of this file slice.
 
@@ -1199,7 +1203,7 @@ An instance number property that represents the ending byte position of this fil
 File.end: number
 ```
 
-#### 6.6.8 slice
+#### 7.6.8 slice
 
 An instance method to return a new [File](#660-file) instance at the sliced byte positions.
 
@@ -1209,13 +1213,13 @@ An instance method to return a new [File](#660-file) instance at the sliced byte
 File.slice(start?: number, end?: number): File
 ```
 
-### 6.7.0 FileReader
+### 7.7.0 FileReader
 
 This section describes the `FileReader` API, used to read [FileEntry](#600-fileentry) objects.
 
 Note that while this API is similar, it is not the same API as the browser's [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) object.
 
-#### 6.7.1 constructor
+#### 7.7.1 constructor
 
 Constructs a new [FileReader](#670-filereader) instance.
 
@@ -1225,7 +1229,7 @@ Constructs a new [FileReader](#670-filereader) instance.
 new FileReader(file: FileEntry)
 ```
 
-#### 6.7.2 READ_CHUNK_SIZE
+#### 7.7.2 READ_CHUNK_SIZE
 
 A constant that defines the maximum bytes to read.
 
@@ -1235,7 +1239,7 @@ A constant that defines the maximum bytes to read.
 FileReader.READ_CHUNK_SIZE: number = 262144
 ```
 
-#### 6.7.3 onloadstart
+#### 7.7.3 onloadstart
 
 A callback that will be invoked when loading has began.
 
@@ -1245,7 +1249,7 @@ A callback that will be invoked when loading has began.
 FileReader.onloadstart: null | (event: ProgressEvent) => void;void;
 ```
 
-#### 6.7.4 onload
+#### 7.7.4 onload
 
 A callback that will be invoked when the file has completely loaded successfully.
 
@@ -1255,7 +1259,7 @@ A callback that will be invoked when the file has completely loaded successfully
 FileReader.onload: null | (event: ProgressEvent) => void;
 ```
 
-#### 6.7.5 onloadend
+#### 7.7.5 onloadend
 
 A callback that will be invoked when loading had stopped, regardless of success or failure.
 
@@ -1265,7 +1269,7 @@ A callback that will be invoked when loading had stopped, regardless of success 
 FileReader.onloadend: null | (event: ProgressEvent) => void;
 ```
 
-#### 6.7.6 onprogress
+#### 7.7.6 onprogress
 
 A callback that will be invoked on every load chunk read.
 
@@ -1275,7 +1279,7 @@ A callback that will be invoked on every load chunk read.
 FileReader.onprogress: null | (event: ProgressEvent) => void;
 ```
 
-#### 6.7.7 onerror
+#### 7.7.7 onerror
 
 A callback that will be invoked when an error has occurred.
 
@@ -1285,7 +1289,7 @@ A callback that will be invoked when an error has occurred.
 FileReader.onerror: null | (event: ProgressEvent) => void;
 ```
 
-#### 6.7.8 onabort
+#### 7.7.8 onabort
 
 A callback that will be invoked when loading has aborted.
 
@@ -1295,7 +1299,7 @@ A callback that will be invoked when loading has aborted.
 FileReader.onabort: null | (event: ProgressEvent) => void;
 ```
 
-#### 6.7.9 readyState
+#### 7.7.9 readyState
 
 An instance property that describes the current reader [ReadyState](#680-reader-ready-states).
 
@@ -1305,7 +1309,7 @@ An instance property that describes the current reader [ReadyState](#680-reader-
 FileReader.readyState: number;
 ```
 
-#### 6.7.10 error
+#### 7.7.10 error
 
 An instance property that holds the current error state of the reader.
 
@@ -1315,7 +1319,7 @@ An instance property that holds the current error state of the reader.
 FileReader.error: FileError;
 ```
 
-#### 6.7.11 result
+#### 7.7.11 result
 
 An instance property that holds the read results.
 The data type depends on which read type used.
@@ -1334,7 +1338,7 @@ The following methods will produce an `ArrayBuffer` result:
 FileReader.result: string | ArrayBuffer;
 ```
 
-#### 6.7.12 abort
+#### 7.7.12 abort
 
 An instance method to abort an active read.
 
@@ -1344,7 +1348,7 @@ An instance method to abort an active read.
 FileReader.abort(): void;
 ```
 
-#### 6.7.13 readAsText
+#### 7.7.13 readAsText
 
 An instance method to read a file as text.
 When completed, the `result` will hold the contents of the file as a `string`.
@@ -1357,7 +1361,7 @@ The `encoding` parameter is an optional string as a character set code. For vali
 FileReader.readAsText(file: File, encoding?: string): void;
 ```
 
-#### 6.7.14 readAsDataURL
+#### 7.7.14 readAsDataURL
 
 Reads a file as a Data URL form. When finished, the `result` will be a formatted data URL as a `string.`.
 
@@ -1375,7 +1379,7 @@ Where `mediaType` will be the MIME type, if known.
 FileReader.readAsDataURL(file: File): void;
 ```
 
-#### 6.7.15 readAsBinaryString
+#### 7.7.15 readAsBinaryString
 
 Reads a file as a Binary String form. When finished, the `result` will be a formatted data URL as a `string.`.
 
@@ -1387,7 +1391,7 @@ Note: This method should be avoided as due to JavaScript UTF16 encoding, the con
 FileReader.readAsBinaryString(file: File): void;
 ```
 
-#### 6.7.16 readAsArrayBuffer
+#### 7.7.16 readAsArrayBuffer
 
 Reads a file as an `ArrayBuffer`. When finished, the `result` will be the contents of the file as `ArrayBuffer` type.
 
@@ -1398,11 +1402,11 @@ FileReader.readAsArrayBuffer(file: File): void;
 ```
 
 
-### 6.8.0 Reader Ready States
+### 7.8.0 Reader Ready States
 
 This section describes the [FileReader](#670-filereader) Ready States.
 
-#### 6.8.1 EMPTY
+#### 7.8.1 EMPTY
 
 A constant that declares that the reader hasn't began reading yet.
 
@@ -1412,7 +1416,7 @@ A constant that declares that the reader hasn't began reading yet.
 FileReader.EMPTY: number = 0
 ```
 
-#### 6.8.2 LOADING
+#### 7.8.2 LOADING
 
 A constant that declares that the reader is currently reading data.
 
@@ -1422,7 +1426,7 @@ A constant that declares that the reader is currently reading data.
 FileReader.LOADING: number = 1
 ```
 
-#### 6.8.3 DONE
+#### 7.8.3 DONE
 
 A constant that declares that the reader has finished reading data.
 
