@@ -1,0 +1,31 @@
+
+plugins {
+    id 'com.android.library'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "7.5.1"
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 22
+        targetSdk 32
+        versionCode 1
+        versionName "7.0.1 dev"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    dependencies {
+        implementation "androidx.appcompat:appcompat:1.4.2"
+        implementation "androidx.webkit:webkit:1.4.0"
+        compileOnly 'org.apache.cordova:framework:11.0.0'
+    }
+}

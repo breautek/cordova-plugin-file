@@ -132,11 +132,13 @@ to config.xml in order for the application to find previously stored files.
             </feature>
             <allow-navigation href="cdvfile:*" />
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
+        <lib-file src="gradle/cdvPluginFile/build/outputs/aar/cdvPluginFile-release.aar" />
+        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference" />
+        <!-- <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        </config-file>
+        </config-file> -->
 
-        <source-file src="src/android/EncodingException.java" target-dir="src/org/apache/cordova/file" />
+        <!-- <source-file src="src/android/EncodingException.java" target-dir="src/org/apache/cordova/file" />
         <source-file src="src/android/FileExistsException.java" target-dir="src/org/apache/cordova/file" />
         <source-file src="src/android/InvalidModificationException.java" target-dir="src/org/apache/cordova/file" />
         <source-file src="src/android/NoModificationAllowedException.java" target-dir="src/org/apache/cordova/file" />
@@ -151,7 +153,7 @@ to config.xml in order for the application to find previously stored files.
         <source-file src="src/android/PendingRequests.java" target-dir="src/org/apache/cordova/file" />
 
         <preference name="ANDROIDX_WEBKIT_VERSION" default="1.4.0"/>
-        <framework src="androidx.webkit:webkit:$ANDROIDX_WEBKIT_VERSION" />
+        <framework src="androidx.webkit:webkit:$ANDROIDX_WEBKIT_VERSION" /> -->
 
         <!-- android specific file apis -->
         <js-module src="www/android/Entry.js" name="androidEntry">
