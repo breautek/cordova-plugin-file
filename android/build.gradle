@@ -1,0 +1,51 @@
+
+plugins {
+    id 'com.android.library'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "7.5.1"
+}
+
+dependencies {
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    testImplementation "junit:junit:4.13.2"
+
+    compileOnly "org.apache.cordova:framework:11.0.0"
+    androidTestImplementation "org.apache.cordova:framework:11.0.0"
+
+    implementation "androidx.appcompat:appcompat:1.6.0"
+
+    implementation "androidx.webkit:webkit:1.+"
+}
+
+android {
+    namespace 'org.apache.cordova.file'
+    compileSdk 33
+    buildToolsVersion "33.0.2"
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0 Beta"
+
+        testApplicationId "org.apache.cordova.file.testApp"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // minifyEnabled false
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled false
+        }
+    }
+}
