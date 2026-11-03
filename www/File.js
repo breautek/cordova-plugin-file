@@ -19,60 +19,44 @@
  *
 */
 
-/**
- * Constructor.
- * name {DOMString} name of the file, without path information
- * fullPath {DOMString} the full path of the file, including the name
- * type {DOMString} mime type
- * lastModifiedDate {Date} last modified date
- * size {Number} size of the file in bytes
- */
-
-const File = function (name, localURL, type, lastModifiedDate, size) {
-    this.name = name || '';
-    this.localURL = localURL || null;
-    this.type = type || null;
-    this.lastModified = lastModifiedDate || null;
-    // For backwards compatibility, store the timestamp in lastModifiedDate as well
-    this.lastModifiedDate = lastModifiedDate || null;
-    this.size = size || 0;
-
-    // These store the absolute start and end for slicing the file.
-    this.start = 0;
-    this.end = this.size;
-};
+const modulemapper = require('cordova/modulemapper');
+const NativeFile = modulemapper.getOriginalSymbol(window, 'File');
+const CordovaFile = require('./CordovaFile');
 
 /**
- * Returns a "slice" of the file. Since Cordova Files don't contain the actual
- * content, this really returns a File with adjusted start and end.
- * Slices of slices are supported.
- * start {Number} The index at which to start the slice (inclusive).
- * end {Number} The index at which to end the slice (exclusive).
+ * File factory that either behaves as a Cordova File or the standard W3C file
+ * depending on the given arguments.
+ * 
+ * A CordovaFile is not a W3C blob or file and is not interchangeable. What this
+ * factory function does is return a CordovaFile when the arguments are CordovaFile-like,
+ * otherwise it returns the standard W3C file object.
+ * 
+ * Instantiation uses Reflect to proxy the API to the corresponding API
+ * which retains inheritance chains on the returned instance.
  */
-File.prototype.slice = function (start, end) {
-    const size = this.end - this.start;
-    let newStart = 0;
-    let newEnd = size;
-    if (arguments.length) {
-        if (start < 0) {
-            newStart = Math.max(size + start, 0);
-        } else {
-            newStart = Math.min(size, start);
-        }
+function File(...args) {
+    if (!new.target) {
+        throw new TypeError("Constructing a File requires the new operator.");
     }
-
-    if (arguments.length >= 2) {
-        if (end < 0) {
-            newEnd = Math.max(size + end, 0);
-        } else {
-            newEnd = Math.min(end, size);
-        }
+    
+    // the first parameter of a CordovaFile is expected to be a string,
+    // while the first parameter of a W3C file is an array of bits/blobs/other files, etc.
+    const isW3C = args.length > 0 && args[0] !== null && typeof args[0] === 'object';
+    
+    
+    if (isW3C) {
+        return Reflect.construct(NativeFile, args, new.target === File ? NativeFile : new.target);
     }
+    else {
+        return Reflect.construct(CordovaFile, args, new.target === File ? CordovaFile : new.target);
+    }
+}
 
-    const newFile = new File(this.name, this.localURL, this.type, this.lastModified, this.size);
-    newFile.start = this.start + newStart;
-    newFile.end = this.start + newEnd;
-    return newFile;
-};
+// Make the File prototype pretend it's the W3C File for the purposes of `instanceof` checks.
+File.prototype = NativeFile.prototype;
 
-module.exports = File;
+// This allows both a CordovaFile instance or a W3C file instance to return true
+// when using x instanceof File
+Object.defineProperty(File, Symbol.hasInstance, {
+    value: (o) => o instanceof NativeFile || o instanceof CordovaFile
+});

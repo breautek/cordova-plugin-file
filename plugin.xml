@@ -45,6 +45,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <clobbers target="window.Entry" />
     </js-module>
 
+    <js-module src="www/CordovaFile.js" name="CordovaFile">
+        <clobbers target="window.CordovaFile" />
+    </js-module>
+
     <js-module src="www/File.js" name="File">
         <clobbers target="window.File" />
     </js-module>
